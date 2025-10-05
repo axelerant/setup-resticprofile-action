@@ -12,15 +12,15 @@ inputs:
   install-restic:
     description: Should restic be installed?
     required: false
-    default: "true"
+    default: 'true'
   restic-version:
     description: The version of restic to install
     required: false
-    default: "latest"
+    default: 'latest'
   resticprofile-version:
     description: The version of resticprofile to install
     required: false
-    default: "latest"
+    default: 'latest'
 
 # Define your outputs here.
 outputs:

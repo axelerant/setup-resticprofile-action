@@ -6,7 +6,9 @@
 [![CodeQL](https://github.com/axelerant/setup-resticprofile-action/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/actions/typescript-action/actions/workflows/codeql-analysis.yml)
 [![Coverage](./badges/coverage.svg)](./badges/coverage.svg)
 
-A GitHub Action that installs restic and resticprofile binaries on the runner. This action downloads the specified versions of restic and resticprofile and makes them available in the PATH for use in your workflows.
+A GitHub Action that installs restic and resticprofile binaries on the runner.
+This action downloads the specified versions of restic and resticprofile and
+makes them available in the PATH for use in your workflows.
 
 ## Features
 
@@ -18,7 +20,8 @@ A GitHub Action that installs restic and resticprofile binaries on the runner. T
 
 ## Usage
 
-Use this action in your workflow to set up restic and resticprofile before running backup operations.
+Use this action in your workflow to set up restic and resticprofile before
+running backup operations.
 
 ### Basic Usage
 
@@ -30,8 +33,8 @@ steps:
   - name: Setup restic and resticprofile
     uses: axelerant/setup-resticprofile-action@v1
     with:
-      restic-version: "latest"
-      resticprofile-version: "latest"
+      restic-version: 'latest'
+      resticprofile-version: 'latest'
 
   - name: Run restic backup
     run: restic version
@@ -49,8 +52,8 @@ steps:
     id: setup
     with:
       install-restic: true
-      restic-version: "0.16.4"
-      resticprofile-version: "0.27.0"
+      restic-version: '0.16.4'
+      resticprofile-version: '0.27.0'
 
   - name: Verify installation
     run: |
@@ -65,24 +68,25 @@ steps:
 
 ### Inputs
 
-| Input | Description | Required | Default |
-|-------|-------------|----------|---------|
-| `install-restic` | Whether to install restic | No | `true` |
-| `restic-version` | Version of restic to install | No | `latest` |
-| `resticprofile-version` | Version of resticprofile to install | No | `latest` |
+| Input                   | Description                         | Required | Default  |
+| ----------------------- | ----------------------------------- | -------- | -------- |
+| `install-restic`        | Whether to install restic           | No       | `true`   |
+| `restic-version`        | Version of restic to install        | No       | `latest` |
+| `resticprofile-version` | Version of resticprofile to install | No       | `latest` |
 
 ### Outputs
 
-| Output | Description |
-|--------|-------------|
-| `restic-installed` | Whether restic was successfully installed |
+| Output                    | Description                                      |
+| ------------------------- | ------------------------------------------------ |
+| `restic-installed`        | Whether restic was successfully installed        |
 | `resticprofile-installed` | Whether resticprofile was successfully installed |
 
 ## Development
 
 ### Prerequisites
 
-You'll need to have a reasonably modern version of [Node.js](https://nodejs.org) handy (24.x or later should work!).
+You'll need to have a reasonably modern version of [Node.js](https://nodejs.org)
+handy (24.x or later should work!).
 
 ### Setup
 
@@ -112,7 +116,8 @@ You'll need to have a reasonably modern version of [Node.js](https://nodejs.org)
 
 ### Testing Locally
 
-You can test the action locally using the [`@github/local-action`](https://github.com/github/local-action) utility:
+You can test the action locally using the
+[`@github/local-action`](https://github.com/github/local-action) utility:
 
 ```bash
 # Visual Studio Code Debugger
@@ -122,11 +127,14 @@ You can test the action locally using the [`@github/local-action`](https://githu
 npx @github/local-action . src/main.ts .env
 ```
 
-You can provide a `.env` file to set environment variables for testing. See [`.env.example`](./.env.example) for reference.
+You can provide a `.env` file to set environment variables for testing. See
+[`.env.example`](./.env.example) for reference.
 
 ## Implementation
 
-The action downloads the appropriate binaries for restic and resticprofile based on the runner's operating system and architecture. The binaries are extracted to `/usr/local/bin` (or the Windows equivalent) to make them available in the PATH.
+The action downloads the appropriate binaries for restic and resticprofile based
+on the runner's operating system and architecture. The binaries are extracted to
+`/usr/local/bin` (or the Windows equivalent) to make them available in the PATH.
 
 The action supports:
 
@@ -144,11 +152,13 @@ The action supports:
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
+for details.
 
 ## Versioning
 
-This action follows semantic versioning. You can reference specific versions using tags:
+This action follows semantic versioning. You can reference specific versions
+using tags:
 
 ```yaml
 uses: axelerant/setup-resticprofile-action@v1.0.0
@@ -162,7 +172,8 @@ uses: axelerant/setup-resticprofile-action@main
 
 ## Publishing New Releases
 
-This project includes a helper script at [`script/release`](./script/release) to streamline the release process. The script helps with:
+This project includes a helper script at [`script/release`](./script/release) to
+streamline the release process. The script helps with:
 
 1. Creating properly formatted release tags
 2. Updating version numbers in package.json
