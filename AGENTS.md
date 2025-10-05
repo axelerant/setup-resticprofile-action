@@ -6,7 +6,7 @@ does this by downloading the binaries and placing it in the /usr/local/bin.
 ## Practices
 
 - **Type Safety**: Leverage TypeScript's type system to catch errors at compile
-  time. Always type function arguments, return values, and variables.
+  time. Always type function parameters, return values, and variables.
 - **Input Validation**: Validate all inputs received from
   `@actions/core.getInput` before using them. Provide clear error messages for
   invalid or missing inputs.

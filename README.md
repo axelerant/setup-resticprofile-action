@@ -96,19 +96,19 @@ handy (24.x or later should work!).
    npm install
    ```
 
-2. **Package the TypeScript for distribution**
+1. **Package the TypeScript for distribution**
 
    ```bash
    npm run bundle
    ```
 
-3. **Run tests**
+1. **Run tests**
 
    ```bash
    npm test
    ```
 
-4. **Format, lint, test, and build everything**
+1. **Format, lint, test, and build everything**
 
    ```bash
    npm run all
@@ -176,12 +176,12 @@ This project includes a helper script at [`script/release`](./script/release) to
 streamline the release process. The script helps with:
 
 1. Creating properly formatted release tags
-2. Updating version numbers in package.json
-3. Pushing releases to GitHub
+1. Updating version numbers in package.json
+1. Pushing releases to GitHub
 
 Before releasing, make sure to:
 
 1. Update the version in `package.json`
-2. Run `npm run all` to ensure everything builds correctly
-3. Test the action in a workflow
-4. Run the release script: `./script/release`
+1. Run `npm run all` to ensure everything builds correctly
+1. Test the action in a workflow
+1. Run the release script: `./script/release`

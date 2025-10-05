@@ -21,13 +21,17 @@ inputs:
     description: The version of resticprofile to install
     required: false
     default: 'latest'
+  path:
+    description: The path to install the restic and resticprofile binaries
+    required: false
+    default: '/usr/local/bin'
 
 # Define your outputs here.
 outputs:
   restic-installed:
-    description: Whether restic was installed
+    description: Whether restic was successfully installed
   resticprofile-installed:
-    description: Whether resticprofile was installed
+    description: Whether resticprofile was succcessfully installed
 
 runs:
   using: node24
