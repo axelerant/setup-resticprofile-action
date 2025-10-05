@@ -145,10 +145,10 @@ The action supports:
 ## Contributing
 
 1. Create a feature branch from `main`
-2. Make your changes
-3. Add tests in `__tests__/` directory
-4. Run `npm run all` to format, lint, test, and build
-5. Create a pull request
+1. Make your changes
+1. Add tests in `__tests__/` directory
+1. Run `npm run all` to format, lint, test, and build
+1. Create a pull request
 
 ## License
 

@@ -61,4 +61,6 @@ jobs:
 
       - name: Print Output
         id: output
-        run: echo "${{ steps.test-action.outputs.status }}"
+        run: |
+          echo "Restic installed: ${{ steps.test-action.outputs.restic-installed }}"
+          echo "Resticprofile installed: ${{ steps.test-action.outputs.resticprofile-installed }}"
