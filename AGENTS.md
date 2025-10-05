@@ -19,4 +19,3 @@ This is a GitHub Action that installs restic and resticprofile on the runner. It
 - **Version Pinning**: Pin action and dependency versions to avoid unexpected breaking changes.
 - **Distribution**: Use a bundler (like Rollup) to produce a single JavaScript file for distribution, and commit the built file to your repository.
 - **Avoid Long-Running Processes**: Keep actions fast and efficient. Clean up any temporary files or processes you start.
-
