@@ -1,23 +1,33 @@
-name: The name of your action here
-description: Provide a description here
-author: Your name or organization here
+name: Setup restic and resticprofile
+description: Install restic and resticprofile in the workflow
+author: axelerant
 
 # Add your action's branding here. This will appear on the GitHub Marketplace.
 branding:
-  icon: heart
-  color: red
+  icon: cloud
+  color: green
 
 # Define your inputs here.
 inputs:
-  milliseconds:
-    description: Your input description here
-    required: true
-    default: '1000'
+  install-restic:
+    description: Should restic be installed?
+    required: false
+    default: "true"
+  restic-version:
+    description: The version of restic to install
+    required: false
+    default: "latest"
+  resticprofile-version:
+    description: The version of resticprofile to install
+    required: false
+    default: "latest"
 
 # Define your outputs here.
 outputs:
-  time:
-    description: Your output description here
+  restic-installed:
+    description: Whether restic was installed
+  resticprofile-installed:
+    description: Whether resticprofile was installed
 
 runs:
   using: node24
