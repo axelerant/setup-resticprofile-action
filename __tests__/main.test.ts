@@ -54,8 +54,8 @@ describe('main.ts', () => {
     mockUtils.getResticprofileDownloadUrl.mockReturnValue(
       'https://github.com/creativeprojects/resticprofile/releases/download/v0.32.0/resticprofile_0.32.0_darwin_arm64.tar.gz'
     )
-    mockUtils.downloadFile.mockResolvedValue('/tmp/downloaded-file')
-    mockUtils.extractBz2.mockResolvedValue('/tmp/extracted-file')
+    mockUtils.downloadFile.mockResolvedValue('/usr/local/bin/downloaded-file')
+    mockUtils.extractBz2.mockResolvedValue('/usr/local/bin/extracted-file')
     mockUtils.extractTarGz.mockResolvedValue('/tmp/extracted-dir')
     mockUtils.makeExecutable.mockResolvedValue(undefined)
     mockUtils.moveFile.mockReturnValue(undefined)

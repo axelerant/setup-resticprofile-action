@@ -35,20 +35,24 @@ async function installRestic(
     actualVersion = `v${actualVersion}`
   }
 
-  // Build download URL and download the file
+  // Build download URL and download the file directly to install path
   const downloadUrl = getResticDownloadUrl(actualVersion)
-  const downloadedPath = await downloadFile(downloadUrl)
+  const downloadedPath = await downloadFile(
+    downloadUrl,
+    path.join(installPath, path.basename(downloadUrl))
+  )
 
-  // Extract the .bz2 file to a temporary directory
-  const tempDir = path.join(os.tmpdir(), 'restic-extract')
-  const extractedPath = await extractBz2(downloadedPath, tempDir)
+  // Extract the .bz2 file in-place
+  const extractedPath = await extractBz2(downloadedPath)
 
   // Make the binary executable
   await makeExecutable(extractedPath)
 
-  // Move to the final installation path
+  // Rename to final name if needed (remove version info from filename)
   const finalPath = path.join(installPath, 'restic')
-  moveFile(extractedPath, finalPath)
+  if (extractedPath !== finalPath) {
+    moveFile(extractedPath, finalPath)
+  }
 
   core.info(`✓ restic ${actualVersion} installed successfully at ${finalPath}`)
 }
@@ -76,12 +80,15 @@ async function installResticprofile(
     actualVersion = `v${actualVersion}`
   }
 
-  // Build download URL and download the file
+  // Build download URL and download the file to a temporary directory
   const downloadUrl = getResticprofileDownloadUrl(actualVersion)
-  const downloadedPath = await downloadFile(downloadUrl)
-
-  // Extract the .tar.gz file to a temporary directory
   const tempDir = path.join(os.tmpdir(), 'resticprofile-extract')
+  const downloadedPath = await downloadFile(
+    downloadUrl,
+    path.join(tempDir, path.basename(downloadUrl))
+  )
+
+  // Extract the .tar.gz file
   const extractedDir = await extractTarGz(downloadedPath, tempDir)
 
   // The resticprofile binary should be in the extracted directory

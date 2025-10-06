@@ -116,16 +116,20 @@ export function getResticprofileDownloadUrl(version: string): string {
 }
 
 /**
- * Download a file from a URL
+ * Download a file from a URL to a specific destination path
  *
  * @param url - The URL to download from
+ * @param destPath - The destination path where the file should be saved
  * @returns Path to the downloaded file
  */
-export async function downloadFile(url: string): Promise<string> {
-  core.info(`Downloading from ${url}`)
+export async function downloadFile(
+  url: string,
+  destPath: string
+): Promise<string> {
+  core.info(`Downloading from ${url} to ${destPath}`)
 
   try {
-    const downloadPath = await tc.downloadTool(url)
+    const downloadPath = await tc.downloadTool(url, destPath)
     core.info(`Downloaded to ${downloadPath}`)
     return downloadPath
   } catch (error) {
@@ -136,35 +140,23 @@ export async function downloadFile(url: string): Promise<string> {
 }
 
 /**
- * Extract a .bz2 file
+ * Extract a .bz2 file in-place
  *
  * @param archivePath - Path to the .bz2 file
- * @param destDir - Destination directory for extraction
  * @returns Path to the extracted file
  */
-export async function extractBz2(
-  archivePath: string,
-  destDir: string
-): Promise<string> {
-  core.info(`Extracting ${archivePath} to ${destDir}`)
+export async function extractBz2(archivePath: string): Promise<string> {
+  core.info(`Extracting ${archivePath}`)
 
-  // Ensure destination directory exists
-  if (!fs.existsSync(destDir)) {
-    fs.mkdirSync(destDir, { recursive: true })
-  }
+  // Use bunzip2 to extract in-place (removes .bz2 extension automatically)
+  await exec.exec('bunzip2', [archivePath])
 
-  // Get the base filename without .bz2 extension
-  const basename = path.basename(archivePath, '.bz2')
-  const outputPath = path.join(destDir, basename)
+  // Get the extracted file path (without .bz2 extension)
+  const extractedPath = archivePath.replace(/\.bz2$/, '')
 
-  // Use bunzip2 to extract
-  await exec.exec('bunzip2', ['-c', archivePath], {
-    outStream: fs.createWriteStream(outputPath)
-  })
+  core.info(`Extracted to ${extractedPath}`)
 
-  core.info(`Extracted to ${outputPath}`)
-
-  return outputPath
+  return extractedPath
 }
 
 /**
