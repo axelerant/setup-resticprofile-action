@@ -28,7 +28,7 @@ running backup operations.
 ```yaml
 steps:
   - name: Checkout
-    uses: actions/checkout@v4
+    uses: actions/checkout@v5
 
   - name: Setup restic and resticprofile
     uses: axelerant/setup-resticprofile-action@v1
@@ -45,7 +45,7 @@ steps:
 ```yaml
 steps:
   - name: Checkout
-    uses: actions/checkout@v4
+    uses: actions/checkout@v5
 
   - name: Setup restic and resticprofile
     uses: axelerant/setup-resticprofile-action@v1
