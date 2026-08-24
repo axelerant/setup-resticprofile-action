@@ -70,9 +70,5 @@
   },
   "optionalDependencies": {
     "@rollup/rollup-linux-x64-gnu": "*"
-  },
-  "overrides": {
-    "undici@^5": "^6.28.0",
-    "minimatch@9.0.3": "^9.0.9"
   }
 }
