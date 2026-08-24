@@ -31,7 +31,7 @@ outputs:
   restic-installed:
     description: Whether restic was successfully installed
   resticprofile-installed:
-    description: Whether resticprofile was succcessfully installed
+    description: Whether resticprofile was successfully installed
 
 runs:
   using: node24
