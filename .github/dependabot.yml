@@ -5,22 +5,49 @@ updates:
     schedule:
       interval: weekly
     groups:
-      actions-minor:
-        update-types:
-          - minor
-          - patch
+      # Actions maintained by GitHub itself (actions/*, github/*) are
+      # released in lockstep and safe to bump together, majors included.
+      github-official:
+        patterns:
+          - actions/*
+          - github/*
 
   - package-ecosystem: npm
     directory: /
     schedule:
       interval: weekly
     groups:
-      npm-development:
-        dependency-type: development
+      # The @actions toolkit is the only production dependency family.
+      actions-toolkit:
+        dependency-type: production
+        patterns:
+          - '@actions/*'
         update-types:
           - minor
           - patch
-      npm-production:
-        dependency-type: production
+      # Lint/format chain: eslint, plugins, @typescript-eslint, prettier.
+      lint:
+        dependency-type: development
+        patterns:
+          - '*eslint*'
+          - '*prettier*'
         update-types:
+          - minor
+          - patch
+      # Test chain: jest, @jest/*, @types/jest, ts-jest*.
+      test:
+        dependency-type: development
+        patterns:
+          - '*jest*'
+        update-types:
+          - minor
+          - patch
+      # Build chain: rollup and its plugins.
+      rollup:
+        dependency-type: development
+        patterns:
+          - rollup
+          - '@rollup/*'
+        update-types:
+          - minor
           - patch
